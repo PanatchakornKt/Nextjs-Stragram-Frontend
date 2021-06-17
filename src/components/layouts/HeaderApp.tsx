@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Divider, Typography, Button, Card } from "antd";
+import { Divider, Typography, Button } from "antd";
 import { AiOutlineHome } from "react-icons/ai";
 
 const { Title } = Typography;
@@ -16,12 +16,6 @@ const HeaderApp = ({ children }) => {
         </Divider>
       </div>
       <div className="pl-20 mb-4">
-        {/* <label>
-          <buuton>
-            <Link href="/">Home</Link>
-          </buuton>
-        </label> */}
-
         <label className="pl-2">
           <Button type="primary">
             {" "}
