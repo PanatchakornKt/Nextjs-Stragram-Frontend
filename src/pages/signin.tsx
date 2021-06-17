@@ -4,7 +4,7 @@ import InputSignIn from "@/components/InputSignIn";
 const SignIn = () => {
   return (
     <>
-      <title>Sign In - Daytech Stragram</title>
+      <title>Sign in - Daytech Stragram</title>
       <InputSignIn />
     </>
   );

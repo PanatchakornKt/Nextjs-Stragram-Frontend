@@ -19,13 +19,13 @@ const HeaderApp = ({ children }) => {
         <label className="pl-2">
           <Button type="primary">
             {" "}
-            <Link href="/signup">Sign Up</Link>
+            <Link href="/signup">Sign up</Link>
           </Button>
         </label>
         <label className="pl-2">
           <Button>
             {" "}
-            <Link href="/signin">Sign In</Link>
+            <Link href="/signin">Sign in</Link>
           </Button>
         </label>
       </div>

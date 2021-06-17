@@ -26,7 +26,7 @@ const InputSignUp = () => {
       <HeaderApp>
         <div className="site-card-border-less-wrapper pl-20">
           <Card
-            title="Sign Up"
+            title="Sign up"
             extra={
               <a href="/">
                 <HomeOutlined />
@@ -71,7 +71,7 @@ const InputSignUp = () => {
 
               <Form.Item {...tailLayout}>
                 <Button type="primary" htmlType="submit">
-                  <Link href="/feeds">Sign Up</Link>
+                  <Link href="/feeds">Sign up</Link>
                 </Button>
               </Form.Item>
             </Form>
