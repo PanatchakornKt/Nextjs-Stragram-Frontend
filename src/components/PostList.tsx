@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Card, Avatar } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  CommentOutlined,
+} from "@ant-design/icons";
 import Addcomment from "@/components/AddComment";
 
 const { Meta } = Card;
@@ -39,8 +43,8 @@ const PostList = ({
             }
             actions={[
               <EditOutlined onClick={() => onEditPost(post)} />,
+              <CommentOutlined onClick={onComment} />,
               <DeleteOutlined onClick={() => onDelete(post.id)} />,
-              <button onClick={onComment}>Comment</button>,
             ]}
           >
             <Meta
