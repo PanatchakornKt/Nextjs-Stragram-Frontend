@@ -17,7 +17,7 @@ const AddComment = ({
     setInputComment(e.target.value);
   };
 
-  const onAddComment = (e: string, postId: number, type: string) => {
+  const onAddComment = (e: string, postId: number, item: string) => {
     e.preventDefault();
     //const newCommentList = []
     const id = Math.random() * 1000;
@@ -45,7 +45,7 @@ const AddComment = ({
 
   return (
     <>
-      <TextArea
+      {/* <TextArea
         style={{ width: 400 }}
         showCount
         maxLength={200}
@@ -54,10 +54,10 @@ const AddComment = ({
         placeholder="Write a comment..."
       />
       <div className="mt-6 mb-2">
-        <Button type="primary" onClick={onAddComment}>
+        <Button type="primary" onClick={() => onAddComment(post)}>
           Add Comment
         </Button>{" "}
-      </div>
+      </div> */}
     </>
   );
 };
