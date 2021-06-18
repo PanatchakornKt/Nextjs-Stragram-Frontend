@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Modal, Input } from "antd";
 import { Upload, message } from "antd";
 import { FileImageOutlined } from "@ant-design/icons";
+import { PostProps } from "@/components/Types";
 
 const AddPost = ({
   posts,
@@ -71,7 +72,7 @@ const AddPost = ({
   const onAddPost = (e: string) => {
     e.preventDefault();
     const id = Math.random() * 1000;
-    setPosts([...posts, { id, title: input}]);
+    setPosts([...posts, { id, title: input }]);
     setInput("");
     setIsModalVisible(false);
   };
@@ -80,8 +81,8 @@ const AddPost = ({
     setCurrentPost({ ...currentPost, title: e.target.value });
   };
 
-  const onUpdatePost = (id: number, updatedPost: string) => {
-    const updatedItem = posts.map((post: string) => {
+  const onUpdatePost = (id: number, updatedPost: Post) => {
+    const updatedItem = posts.map((post: Post) => {
       return post.id === id ? updatedPost : post;
     });
     setIsEditing(false);

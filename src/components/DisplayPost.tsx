@@ -3,10 +3,10 @@ import AddPost from "@/components/AddPost";
 import PostList from "@/components/PostList";
 
 const App = () => {
-  const [posts, setPosts] = useState<string>([]);
-  const [currentPost, setCurrentPost] = useState<string>([]);
-  const [comments, setComments] = useState<string>([]);
-  const [currentComment, setCurrentComment] = useState<string>([]);
+  const [posts, setPosts] = useState([]);
+  const [currentPost, setCurrentPost] = useState([]);
+  const [comments, setComments] = useState([]);
+  const [currentComment, setCurrentComment] = useState([]);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<booblean>(false);
 
