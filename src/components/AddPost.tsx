@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Modal, Input } from "antd";
 import { Upload, message } from "antd";
 import { FileImageOutlined } from "@ant-design/icons";
@@ -16,26 +16,6 @@ const AddPost = ({
   setIsComment,
 }) => {
   const [input, setInput] = useState<string>("");
-
-  useEffect(() => {
-    getLocal();
-  }, []);
-
-  useEffect(() => {
-    saveLocal();
-  }, [posts]);
-
-  const saveLocal = () => {
-    localStorage.setItem("posts", JSON.stringify(posts));
-  };
-  const getLocal = () => {
-    if (localStorage.getItem("posts") === null) {
-      localStorage.setItem("posts", JSON.stringify([]));
-    } else {
-      let Local = JSON.parse(localStorage.getItem("posts"));
-      setPosts(Local);
-    }
-  };
 
   const props = {
     name: "file",

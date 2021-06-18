@@ -5,7 +5,6 @@ import {
   DeleteOutlined,
   CommentOutlined,
 } from "@ant-design/icons";
-import Addcomment from "@/components/AddComment";
 import { PostProps } from "@/components/Types";
 
 const { Meta } = Card;
@@ -86,7 +85,7 @@ const PostList = ({
               <Card style={{ width: 400 }}>
                 <Meta
                   avatar={
-                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                    <Avatar src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />
                   }
                   title={comment.title}
                   description="by Panatchakorn W."
@@ -121,7 +120,7 @@ const PostList = ({
         >
           <Meta
             avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+              <Avatar src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
             }
             title="Kakatang "
             description={post.title}
@@ -152,7 +151,8 @@ const PostList = ({
               placeholder="Write a comment..."
             />
             <div className="mt-6 mb-2">
-              <label>
+              <label className="ml-2">Comments </label>
+              <label className="ml-48">
                 <Button onClick={() => onAddComment(post)}>Add Comment</Button>{" "}
               </label>
             </div>
