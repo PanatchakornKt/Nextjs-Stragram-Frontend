@@ -8,6 +8,7 @@ const App = () => {
   const [comments, setComments] = useState([]);
   const [currentComment, setCurrentComment] = useState([]);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [isEditingComment, setIsEditingComment] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<booblean>(false);
 
   return (
@@ -35,6 +36,8 @@ const App = () => {
           setComments={setComments}
           currentComment={currentComment}
           setCurrentComment={setCurrentComment}
+          setIsEditingComment={setIsEditingComment}
+          isEditingComment={isEditingComment}
         />
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Avatar, Input, Button } from "antd";
+import { Card, Avatar, Input, Button, List } from "antd";
 import {
   EditOutlined,
   DeleteOutlined,
@@ -21,21 +21,45 @@ const PostList = ({
   setComments,
   currentComment,
   setCurrentComment,
+  isEditingComment,
+  setIsEditingComment,
 }) => {
   const [inputComment, setInputComment] = useState<string>("");
 
   const onDelete = (id: number) => {
-    setPosts(posts.filter((post: string) => post.id !== id));
+    setPosts(posts.filter((post: Post) => post.id !== id));
   };
 
   const onDeleteComment = (id: number) => {
-    setComments(comments.filter((comment: string) => comment.id !== id));
+    setComments(comments.filter((comment: Comment) => comment.id !== id));
   };
 
-  const onEditPost = (post: string) => {
+  const onEditPost = (post: Post) => {
     setIsEditing(true);
     setIsModalVisible(true);
     setCurrentPost({ ...post });
+  };
+
+  const onEditComment = (comment: Comment) => {
+    setIsEditingComment(true);
+    setCurrentComment({ ...comment });
+  };
+
+  const onEditCommentChange = (e: string) => {
+    setCurrentComment({ ...currentComment, title: e.target.value });
+  };
+
+  const onUpdateComment = (id: number, updatedComment: Comment) => {
+    const updatedItem = comments.map((comment: Comment) => {
+      return comment.id === id ? updatedComment : comment;
+    });
+    setIsEditingComment(false);
+    setComments(updatedItem);
+  };
+
+  const handleEditCommentSubmit = (e: string) => {
+    e.preventDefault();
+    onUpdateComment(currentComment.id, currentComment);
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,12 +88,19 @@ const PostList = ({
                   avatar={
                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                   }
-                  title="Kakatang "
-                  description={comment.title}
+                  title={comment.title}
+                  description="by Panatchakorn W."
                 />
-                <button onClick={() => onDeleteComment(comment.id)}>
-                  delete
-                </button>
+                <div className="mt-2 ml-12 text-gray-300">
+                  <label>
+                    <button onClick={() => onEditComment(comment)}>edit</button>
+                  </label>
+                  <label className="ml-2">
+                    <button onClick={() => onDeleteComment(comment.id)}>
+                      delete
+                    </button>
+                  </label>
+                </div>
               </Card>
             </div>
           </div>
@@ -96,19 +127,37 @@ const PostList = ({
             description={post.title}
           />
         </Card>
-
-        <TextArea
-          style={{ width: 400 }}
-          showCount
-          maxLength={200}
-          onChange={onChange}
-          placeholder="Write a comment..."
-        />
-        <div className="mt-6 mb-2">
-          <Button type="primary" onClick={() => onAddComment(post)}>
-            Add Comment
-          </Button>{" "}
-        </div>
+        {isEditingComment ? (
+          <>
+            <TextArea
+              style={{ width: 400 }}
+              showCount
+              maxLength={200}
+              value={currentComment.title}
+              onChange={onEditCommentChange}
+              placeholder="Write a comment..."
+            />
+            <div className="mt-6 mb-2">
+              <Button onClick={handleEditCommentSubmit}>Edit Comment</Button>{" "}
+            </div>
+          </>
+        ) : (
+          <>
+            <TextArea
+              style={{ width: 400 }}
+              showCount
+              maxLength={200}
+              onChange={onChange}
+              value={inputComment}
+              placeholder="Write a comment..."
+            />
+            <div className="mt-6 mb-2">
+              <label>
+                <Button onClick={() => onAddComment(post)}>Add Comment</Button>{" "}
+              </label>
+            </div>
+          </>
+        )}
         {showComments}
       </div>
     );
