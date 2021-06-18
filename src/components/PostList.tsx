@@ -15,11 +15,17 @@ const PostList = ({
   setIsEditing,
   setCurrentPost,
   setIsModalVisible,
-  isComment,
-  setIsComment,
+  comments,
+  setComments,
+  currentComment,
+  setCurrentComment,
 }) => {
   const onDelete = (id: number) => {
     setPosts(posts.filter((post: string) => post.id !== id));
+  };
+
+  const onDeleteComment = (id: number) => {
+    setComments(comments.filter((comment: string) => comment.id !== id));
   };
 
   const onEditPost = (post: string) => {
@@ -28,22 +34,17 @@ const PostList = ({
     setCurrentPost({ ...post });
   };
 
-  const onComment = () => {
-    setIsComment(true);
-  };
-
   return (
     <div>
       {posts.map((post: string) => (
         <div className="mb-2" key={post.id}>
           <Card
-            style={{ width: 500 }}
+            style={{ width: 400 }}
             cover={
               <img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
             }
             actions={[
               <EditOutlined onClick={() => onEditPost(post)} />,
-              <CommentOutlined onClick={onComment} />,
               <DeleteOutlined onClick={() => onDelete(post.id)} />,
             ]}
           >
@@ -55,14 +56,31 @@ const PostList = ({
               description={post.title}
             />
           </Card>
+          <Addcomment
+            comments={comments}
+            setComments={setComments}
+            currentComment={currentComment}
+            setCurrentComment={setCurrentComment}
+            posts={posts}
+            setPosts={setPosts}
+          />
         </div>
       ))}
 
-      {isComment ? (
-        <>
-          <Addcomment setIsComment={setIsComment} />
-        </>
-      ) : null}
+      {comments.map((comment: string) => (
+        <div className="mb-2" key={comment.id}>
+          <Card style={{ width: 400 }}>
+            <Meta
+              avatar={
+                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+              }
+              title="Kakatang "
+              description={comment.title}
+            />
+            <button onClick={() => onDeleteComment(comment.id)}>delete</button>
+          </Card>
+        </div>
+      ))}
     </div>
   );
 };

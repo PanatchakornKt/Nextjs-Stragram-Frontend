@@ -12,6 +12,7 @@ const AddPost = ({
   setCurrentPost,
   isModalVisible,
   setIsModalVisible,
+  setIsComment,
 }) => {
   const [input, setInput] = useState<string>("");
 
@@ -70,7 +71,7 @@ const AddPost = ({
   const onAddPost = (e: string) => {
     e.preventDefault();
     const id = Math.random() * 1000;
-    setPosts([...posts, { id, title: input }]);
+    setPosts([...posts, { id, title: input}]);
     setInput("");
     setIsModalVisible(false);
   };

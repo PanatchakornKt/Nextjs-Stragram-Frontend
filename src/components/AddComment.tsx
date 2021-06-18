@@ -1,29 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input, Button } from "antd";
 
 const { TextArea } = Input;
 
-const AddComment = ({ setIsComment }) => {
+const AddComment = ({
+  comments,
+  setComments,
+  currentComment,
+  setCurrentComment,
+  posts,
+  setPosts,
+}) => {
+  const [inputComment, setInputComment] = useState<string>("");
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("Change:", e.target.value);
+    setInputComment(e.target.value);
   };
 
-  const onCancel = () => {
-    setIsComment(false);
+  const onAddComment = (e: string, postId: number, type: string) => {
+    e.preventDefault();
+    //const newCommentList = []
+    const id = Math.random() * 1000;
+    // if ((type = "post")) {
+    //   posts.map((post) => {
+    //     if ((post.type = "post")) {
+    //       post.id = postId;
+    //     }
+    //   });
+    setComments([...comments, { id, title: inputComment, postId: postId }]);
+    setInputComment("");
+    // setIsComment(false);
+
+    // posts.map((post) => {
+    //   if (post.title === newValue) {
+    //     post.id = postId;
+    //   }
+    //   console.log(postId);
+    // console.log(posts);
+    // setPosts(posts.filter((post: string) => post.id === postId));
+    // console.log(posts);
   };
+
+  console.log(comments);
 
   return (
     <>
-      <p className="mb-2">Write a comment...</p>
       <TextArea
-        style={{ width: 500 }}
+        style={{ width: 400 }}
         showCount
         maxLength={200}
         onChange={onChange}
+        value={inputComment}
+        placeholder="Write a comment..."
       />
-      <div className="mt-6">
-        <Button type="primary">Add Comment</Button>{" "}
-        <Button onClick={onCancel}>Cancel</Button>
+      <div className="mt-6 mb-2">
+        <Button type="primary" onClick={onAddComment}>
+          Add Comment
+        </Button>{" "}
       </div>
     </>
   );
