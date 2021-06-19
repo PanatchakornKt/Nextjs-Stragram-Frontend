@@ -16,16 +16,16 @@ const HeaderApp = ({ children }) => {
         </Divider>
       </div>
       <div className="pl-20 mb-4">
+        <label>
+          <Button>
+            {" "}
+            <Link href="/signin">Sign in</Link>
+          </Button>
+        </label>
         <label className="pl-2">
           <Button type="primary">
             {" "}
             <Link href="/signup">Sign up</Link>
-          </Button>
-        </label>
-        <label className="pl-2">
-          <Button>
-            {" "}
-            <Link href="/signin">Sign in</Link>
           </Button>
         </label>
       </div>
