@@ -111,7 +111,8 @@ const PostList = ({
         <Card
           style={{ width: 400 }}
           cover={
-            <img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
+            // <img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
+            <img src={post.image} style={{ objectFit: "cover" }} />
           }
           actions={[
             <EditOutlined onClick={() => onEditPost(post)} />,
@@ -122,7 +123,7 @@ const PostList = ({
             avatar={
               <Avatar src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
             }
-            title="Kakatang "
+            title="kakatang "
             description={post.title}
           />
         </Card>

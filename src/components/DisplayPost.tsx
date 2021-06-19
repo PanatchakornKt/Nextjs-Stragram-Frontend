@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AddPost from "@/components/AddPost";
 import PostList from "@/components/PostList";
+import Test from "@/components/test";
 
 const App = () => {
   const [posts, setPosts] = useState([]);

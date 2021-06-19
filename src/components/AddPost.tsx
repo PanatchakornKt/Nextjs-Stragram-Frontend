@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button, Modal, Input } from "antd";
-import { Upload, message } from "antd";
 import { FileImageOutlined } from "@ant-design/icons";
 import { PostProps } from "@/components/Types";
 
@@ -16,24 +15,21 @@ const AddPost = ({
   setIsComment,
 }) => {
   const [input, setInput] = useState<string>("");
+  const [image, setImage] = useState<File>();
+  const [preview, setPreview] = useState<string>();
+  const fileInputRef = useRef<HTMLInputElement>();
 
-  const props = {
-    name: "file",
-    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-    headers: {
-      authorization: "authorization-text",
-    },
-    onChange(info) {
-      if (info.file.status !== "uploading") {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === "done") {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-  };
+  useEffect(() => {
+    if (image) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(image);
+    } else {
+      setPreview(null);
+    }
+  }, [image]);
 
   const showModal = () => {
     setInput("");
@@ -52,10 +48,11 @@ const AddPost = ({
   const onAddPost = (e: string) => {
     e.preventDefault();
     const id = Math.random() * 1000;
-    setPosts([...posts, { id, title: input }]);
+    setPosts([...posts, { id, title: input, image: preview }]);
     setInput("");
     setIsModalVisible(false);
   };
+  console.log(posts);
 
   const onEditPostChange = (e: string) => {
     setCurrentPost({ ...currentPost, title: e.target.value });
@@ -120,9 +117,31 @@ const AddPost = ({
                   bordered={false}
                 />
               </div>
-              <Upload {...props}>
-                <Button icon={<FileImageOutlined />}>Photo</Button>
-              </Upload>
+              <div>
+                <img src={preview} style={{ objectFit: "cover" }} />
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    fileInputRef.current.click();
+                  }}
+                >
+                  Add Image
+                </button>
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  style={{ display: "none" }}
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file && file.type.substr(0, 5) === "image") {
+                      setImage(file);
+                    } else {
+                      setImage(null);
+                    }
+                  }}
+                />
+              </div>
             </form>
           </>
         </Modal>
