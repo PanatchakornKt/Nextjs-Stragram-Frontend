@@ -10,13 +10,13 @@ const contentStyle = {
   background: "#364d79",
 };
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <div className="w-100 max-w-4xl mx-auto p-5">
         <title>Daytech Stragram</title>
         <HeaderApp>
-          <div className="pl-20 pr-20 md:justify-center">
+          <div className="pl-12 md:justify-center">
             <Carousel autoplay>
               <div>
                 <Image
@@ -36,4 +36,6 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+
+export default Home;

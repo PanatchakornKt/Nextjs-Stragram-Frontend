@@ -9,13 +9,13 @@ const HeaderApp = ({ children }) => {
   return (
     <>
       <title>Sign in - Daytech Stragram</title>
-      <div className="pl-2">
+      <div>
         <Divider orientation="left">
           {" "}
           <Title level={2}>Daytech Stragram</Title>
         </Divider>
       </div>
-      <div className="pl-20 mb-4">
+      <div className="pl-12 mb-4">
         <label>
           <Button>
             {" "}

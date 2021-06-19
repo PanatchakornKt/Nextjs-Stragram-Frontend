@@ -15,7 +15,7 @@ const PostList = ({
   comments,
   setComments,
 }) => {
-  const [currentComment, setCurrentComment] = useState([]);
+  const [currentComment, setCurrentComment] = useState<Comment>([]);
   const [inputComment, setInputComment] = useState<string>("");
   const [isEditingComment, setIsEditingComment] = useState<boolean>(false);
 
@@ -38,7 +38,7 @@ const PostList = ({
     setCurrentComment({ ...comment });
   };
 
-  const onEditCommentChange = (e: string) => {
+  const onEditCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentComment({ ...currentComment, title: e.target.value });
   };
 

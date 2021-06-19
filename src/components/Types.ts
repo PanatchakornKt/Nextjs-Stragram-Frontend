@@ -8,3 +8,8 @@ export interface CommentProps {
   title: string;
   postId: number;
 }
+
+export interface AuthProps {
+  name: string;
+  password: string;
+}

@@ -13,6 +13,7 @@ const AddPost = ({
   isModalVisible,
   setIsModalVisible,
   setIsComment,
+  SignOutUser,
 }) => {
   const [input, setInput] = useState<string>("");
   const [image, setImage] = useState<File>();
@@ -77,7 +78,7 @@ const AddPost = ({
       <Button type="primary" onClick={showModal}>
         Create Post
       </Button>{" "}
-      <Button danger href="/">
+      <Button danger onClick={SignOutUser}>
         Sign out
       </Button>
       {isEditing ? (
