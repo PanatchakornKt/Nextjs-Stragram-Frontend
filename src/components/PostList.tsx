@@ -16,14 +16,11 @@ const PostList = ({
   setIsEditing,
   setCurrentPost,
   setIsModalVisible,
-  comments,
-  setComments,
-  currentComment,
-  setCurrentComment,
-  isEditingComment,
-  setIsEditingComment,
 }) => {
+  const [comments, setComments] = useState([]);
+  const [currentComment, setCurrentComment] = useState([]);
   const [inputComment, setInputComment] = useState<string>("");
+  const [isEditingComment, setIsEditingComment] = useState<boolean>(false);
 
   const onDelete = (id: number) => {
     setPosts(posts.filter((post: Post) => post.id !== id));

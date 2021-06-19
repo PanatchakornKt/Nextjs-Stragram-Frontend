@@ -50,9 +50,9 @@ const AddPost = ({
     const id = Math.random() * 1000;
     setPosts([...posts, { id, title: input, image: preview }]);
     setInput("");
+    setPreview(null);
     setIsModalVisible(false);
   };
-  console.log(posts);
 
   const onEditPostChange = (e: string) => {
     setCurrentPost({ ...currentPost, title: e.target.value });
