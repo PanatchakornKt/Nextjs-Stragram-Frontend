@@ -5,6 +5,7 @@ import Test from "@/components/test";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
+  const [comments, setComments] = useState([]);
   const [currentPost, setCurrentPost] = useState([]);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<booblean>(false);
@@ -57,6 +58,8 @@ const App = () => {
           setIsEditing={setIsEditing}
           setCurrentPost={setCurrentPost}
           setIsModalVisible={setIsModalVisible}
+          comments={comments}
+          setComments={setComments}
         />
       </div>
     </div>

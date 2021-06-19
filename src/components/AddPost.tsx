@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Button, Modal, Input } from "antd";
+import { Button, Modal, Input, Image } from "antd";
 import { FileImageOutlined } from "@ant-design/icons";
 import { PostProps } from "@/components/Types";
 
@@ -118,15 +118,25 @@ const AddPost = ({
                 />
               </div>
               <div>
-                <img src={preview} style={{ objectFit: "cover" }} />
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    fileInputRef.current.click();
-                  }}
-                >
-                  Add Image
-                </button>
+                <div>
+                  <Image
+                    width={300}
+                    src={preview}
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div>
+                  <Button
+                    shape="round"
+                    icon={<FileImageOutlined />}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      fileInputRef.current.click();
+                    }}
+                  >
+                    Choose your photo
+                  </Button>
+                </div>
                 <input
                   type="file"
                   accept="image/*"

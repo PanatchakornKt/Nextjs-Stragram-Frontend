@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Card, Avatar, Input, Button, List } from "antd";
-import {
-  EditOutlined,
-  DeleteOutlined,
-  CommentOutlined,
-} from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { PostProps } from "@/components/Types";
 
 const { Meta } = Card;
@@ -16,8 +12,9 @@ const PostList = ({
   setIsEditing,
   setCurrentPost,
   setIsModalVisible,
+  comments,
+  setComments,
 }) => {
-  const [comments, setComments] = useState([]);
   const [currentComment, setCurrentComment] = useState([]);
   const [inputComment, setInputComment] = useState<string>("");
   const [isEditingComment, setIsEditingComment] = useState<boolean>(false);
@@ -104,13 +101,10 @@ const PostList = ({
       }
     });
     return (
-      <div className="mb-2" key={post.id}>
+      <div className="mb-2 mt-6" key={post.id}>
         <Card
           style={{ width: 400 }}
-          cover={
-            // <img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />
-            <img src={post.image} style={{ objectFit: "cover" }} />
-          }
+          cover={<img src={post.image} style={{ objectFit: "cover" }} />}
           actions={[
             <EditOutlined onClick={() => onEditPost(post)} />,
             <DeleteOutlined onClick={() => onDelete(post.id)} />,
@@ -118,7 +112,7 @@ const PostList = ({
         >
           <Meta
             avatar={
-              <Avatar src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
+              <Avatar src="https://i.pinimg.com/564x/2f/fa/e6/2ffae67cccf7d31c352649d8a3d0810c.jpg" />
             }
             title="kakatang "
             description={post.title}
@@ -133,6 +127,7 @@ const PostList = ({
               value={currentComment.title}
               onChange={onEditCommentChange}
               placeholder="Write a comment..."
+              required
             />
             <div className="mt-6 mb-2">
               <Button onClick={handleEditCommentSubmit}>Edit Comment</Button>{" "}
@@ -147,12 +142,10 @@ const PostList = ({
               onChange={onChange}
               value={inputComment}
               placeholder="Write a comment..."
+              required
             />
             <div className="mt-6 mb-2">
-              <label className="ml-2">Comments </label>
-              <label className="ml-48">
-                <Button onClick={() => onAddComment(post)}>Add Comment</Button>{" "}
-              </label>
+              <Button onClick={() => onAddComment(post)}>Add Comment</Button>{" "}
             </div>
           </>
         )}

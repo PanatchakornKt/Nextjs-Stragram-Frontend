@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderApp from "@/components/layouts/HeaderApp";
-import { Carousel } from "antd";
+import { Carousel, Image } from "antd";
 
 const contentStyle = {
   height: "600px",
@@ -15,19 +15,19 @@ export default function Home() {
     <>
       <title>Daytech Stragram</title>
       <HeaderApp>
-        <div className="pl-20 pr-20">
+        <div className="pl-20 pr-20 md:justify-center">
           <Carousel autoplay>
             <div>
-              <h3 style={contentStyle}>1</h3>
+              <Image
+                style={contentStyle}
+                src="https://cdna.artstation.com/p/assets/images/images/018/239/240/large/arya-gharti-tilt.jpg?1558674557"
+              />
             </div>
             <div>
-              <h3 style={contentStyle}>2</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle}>3</h3>
-            </div>
-            <div>
-              <h3 style={contentStyle}>4</h3>
+              <Image
+                style={contentStyle}
+                src="https://c.pxhere.com/photos/76/8f/city_urban_colour_berlin_art_smart_germany_deutschland-271381.jpg!d"
+              />
             </div>
           </Carousel>
         </div>
